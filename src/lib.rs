@@ -165,15 +165,20 @@ mod test {
     #[test]
     fn should_have_proper_schema() -> super::Result<()> {
         let package_dir = env!("CARGO_MANIFEST_DIR");
-        let path = format!("{package_dir}/../../data/test.log");
+        let path = format!("{package_dir}/tests/data/test.log");
 
         let mut reader = LogReader::new(&path)?;
 
         let _schema = reader.schema();
         let result = reader.read_all()?;
 
-        println!("SCHEMA {:?}", result.schema());
-        println!("COLS: {:?}", result.columns());
+        let schema = "Field { name: \"time\", data_type: Timestamp(Microsecond, None), nullable: false, dict_id: 0, dict_is_ordered: false, metadata: {} }, \
+        Field { name: \"level\", data_type: Utf8, nullable: false, dict_id: 0, dict_is_ordered: false, metadata: {} }, \
+        Field { name: \"location\", data_type: Utf8, nullable: true, dict_id: 0, dict_is_ordered: false, metadata: {} }, \
+        Field { name: \"message\", data_type: Utf8, nullable: true, dict_id: 0, dict_is_ordered: false, metadata: {} }";
+
+        assert_eq!(schema.to_string(), result.schema().to_string());
+
 
         Ok(())
     }
@@ -181,15 +186,15 @@ mod test {
     #[test]
     fn should_read_all() -> super::Result<()> {
         let package_dir = env!("CARGO_MANIFEST_DIR");
-        let path = format!("{package_dir}/../../data/test.log");
+        let path = format!("{package_dir}/tests/data/test.log");
 
         let mut reader = LogReader::new(&path)?;
 
         let _schema = reader.schema();
         let result = reader.read_all()?;
 
-        println!("SCHEMA {:?}", result.schema());
-        println!("COLS: {:?}", result.columns());
+        assert_eq!(4, result.num_columns());
+        assert_eq!(15, result.num_rows());
 
         Ok(())
     }
