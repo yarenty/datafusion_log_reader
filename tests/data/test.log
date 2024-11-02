@@ -1,0 +1,15 @@
+[2024-10-19T20:41:31Z TRACE datafusion_recipes] TRACE: Hello, world!
+[2024-10-19T20:41:31Z DEBUG datafusion_recipes] DEBUG: Hello, world!
+[2024-10-19T20:41:31Z INFO  datafusion_recipes] INFO: Hello, world!
+[2024-10-19T20:41:31Z WARN  datafusion_recipes] WARN: Hello, world!
+[2024-10-19T20:41:31Z ERROR datafusion_recipes] ERROR: Hello, world!
+[2024-10-19T20:42:07Z TRACE datafusion_recipes] TRACE2: Hello, world!
+[2024-10-19T20:42:07Z DEBUG datafusion_recipes] DEBUG2: Hello, world!
+[2024-10-19T20:42:07Z INFO  datafusion_recipes] INFO2: Hello, world!
+[2024-10-19T20:42:07Z WARN  datafusion_recipes] WARN2: Hello, world!
+[2024-10-19T20:42:07Z ERROR datafusion_recipes] ERROR2: Hello, world!
+[2024-10-19T20:42:30Z TRACE datafusion_recipes] TRACE3: Hello, world!
+[2024-10-19T20:42:30Z DEBUG datafusion_recipes] DEBUG3: Hello, world!
+[2024-10-19T20:42:30Z INFO  datafusion_recipes] INFO3: Hello, world!
+[2024-10-19T20:42:30Z WARN  datafusion_recipes] WARN3: Hello, world!
+[2024-10-19T20:42:30Z ERROR datafusion_recipes] ERROR3: Hello, world!

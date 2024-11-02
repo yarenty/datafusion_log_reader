@@ -1,0 +1,38 @@
+[package]
+name = "datafusion_log_reader"
+version = "0.0.1"
+edition = "2021"
+description = "Simple extension of tableview to read logs and process them in SQL style"
+
+
+[lib]
+name = "datafusion_log_reader"
+path = "src/lib.rs"
+
+
+[dependencies]
+tokio = { version = "1" , features = ["full"] }
+arrow = { version = "53.1.0", features = ["ffi"]}
+datafusion = {version="42"}
+datafusion-expr = { version="42" }
+thiserror = "1"
+async-trait = "0.1"
+chrono = "0.4"
+log = "0.4"
+
+
+[dev-dependencies]
+criterion = "0.5"
+serial_test = { version = "3.1"}
+ctor = "0.2"
+env_logger = "0.11"
+
+
+[[bench]]
+name = "reader_bench"
+harness = false
+
+[[example]]
+name = "simple"
+
+
