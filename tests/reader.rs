@@ -16,7 +16,6 @@ mod log_reader_test {
         assert!(reader.is_err());
     }
 
-
     #[test]
     fn should_read_all() {
         let package_dir = env!("CARGO_MANIFEST_DIR");

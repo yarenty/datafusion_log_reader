@@ -179,7 +179,6 @@ mod test {
 
         assert_eq!(schema.to_string(), result.schema().to_string());
 
-
         Ok(())
     }
 
