@@ -48,11 +48,18 @@ impl LogReader {
     pub fn new(path: &str) -> Result<LogReader> {
         //check if path exists
         if !std::path::Path::new(path).exists() {
-            return Err(DataFusionLogError::General(format!("path {} does not exist", path)));
+            return Err(DataFusionLogError::General(format!(
+                "path {} does not exist",
+                path
+            )));
         }
 
         let schema = Schema::new(vec![
-            Field::new("time", DataType::Timestamp(TimeUnit::Microsecond, None), false),
+            Field::new(
+                "time",
+                DataType::Timestamp(TimeUnit::Microsecond, None),
+                false,
+            ),
             Field::new("level", DataType::Utf8, false),
             Field::new("location", DataType::Utf8, true),
             Field::new("message", DataType::Utf8, true),
@@ -83,7 +90,9 @@ impl LogReader {
                 .collect();
 
             // just temp for test
-            let mess = line.split_at(line.find(tokens[2]).unwrap() + tokens[2].len() + 2).1;
+            let mess = line
+                .split_at(line.find(tokens[2]).unwrap() + tokens[2].len() + 2)
+                .1;
 
             trace!("tokens: {:?}", tokens);
 

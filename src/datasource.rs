@@ -4,7 +4,7 @@ use arrow::datatypes::SchemaRef;
 use async_trait::async_trait;
 use datafusion::catalog::{Session, TableProvider};
 use datafusion::physical_plan::ExecutionPlan;
-use datafusion_expr::{Expr, TableProviderFilterPushDown, TableType};
+use datafusion_expr::{Expr, TableType};
 use log::trace;
 use std::any::Any;
 use std::sync::Arc;
@@ -52,9 +52,7 @@ impl TableProvider for LogDataSource {
         _limit: Option<usize>,
     ) -> datafusion::common::Result<Arc<dyn ExecutionPlan>> {
         self.create_physical_plan(projection, self.schema()).await
-
     }
-
 }
 
 impl LogDataSource {
@@ -63,7 +61,11 @@ impl LogDataSource {
         projections: Option<&Vec<usize>>,
         schema: SchemaRef,
     ) -> datafusion::common::Result<Arc<dyn ExecutionPlan>> {
-        Ok(Arc::new(LogExecutionPlan::new(projections, schema, self.clone())))
+        Ok(Arc::new(LogExecutionPlan::new(
+            projections,
+            schema,
+            self.clone(),
+        )))
     }
 }
 

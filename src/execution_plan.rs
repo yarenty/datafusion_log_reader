@@ -4,7 +4,9 @@ use datafusion::common::{project_schema, Statistics};
 use datafusion::execution::{SendableRecordBatchStream, TaskContext};
 use datafusion::physical_expr::{EquivalenceProperties, Partitioning};
 use datafusion::physical_plan::memory::MemoryStream;
-use datafusion::physical_plan::{DisplayAs, DisplayFormatType, ExecutionMode, ExecutionPlan, PlanProperties};
+use datafusion::physical_plan::{
+    DisplayAs, DisplayFormatType, ExecutionMode, ExecutionPlan, PlanProperties,
+};
 use log::{info, trace};
 use std::any::Any;
 use std::fmt;
@@ -83,7 +85,11 @@ impl ExecutionPlan for LogExecutionPlan {
         let db = self.db.clone();
         // FIXME: remove unwrap
         let result = db.reader.clone().read_all().unwrap();
-        Ok(Box::pin(MemoryStream::try_new(vec![result], self.schema(), None)?))
+        Ok(Box::pin(MemoryStream::try_new(
+            vec![result],
+            self.schema(),
+            None,
+        )?))
     }
 
     fn statistics(&self) -> datafusion::common::Result<Statistics> {
